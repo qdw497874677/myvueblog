@@ -1,0 +1,23 @@
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/vueblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123321
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+server:
+  port: 8081
+shiro-redis:
+  enabled: true
+  redis-manager:
+    host: 49.233.90.47:6379
+markerhub:
+  jwt:
+    # ������Կ
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    # token��Чʱ����7�죬��λ��
+    expire: 604800
+    header: Authorization
