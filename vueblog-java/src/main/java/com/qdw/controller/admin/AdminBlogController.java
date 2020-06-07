@@ -91,7 +91,7 @@ public class AdminBlogController {
         blog.setId(id).setPublished(false);
         boolean flag = blogService.updateById(blog);
         Assert.isTrue(flag, "该博客已被删除");
-
+        System.out.println("AAAAAAAAAAAa");
         return Result.succ(null);
 
     }

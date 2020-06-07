@@ -28,6 +28,8 @@ public class Type implements Serializable {
     private Integer id;
 
     private String name;
+    // 对应blog的数量
+    private Integer c;
 
 
 }

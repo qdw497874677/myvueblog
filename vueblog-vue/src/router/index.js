@@ -4,6 +4,10 @@ import Login from '../views/Login.vue'
 import Blogs from '../views/Blogs.vue'
 import BlogEdit from '../views/BlogEdit.vue'
 import BlogDetail from '../views/BlogDetail.vue'
+import Types from "../views/Types";
+import Tags from "../views/Tags";
+import ChatRoom from "../views/ChatRoom";
+import EditBlog from "../views/EditBlog";
 
 Vue.use(VueRouter)
 
@@ -19,19 +23,51 @@ const routes = [
     component: Blogs
   },
   {
+    path: '/editblogs',
+    name: 'editblogs',
+    component: EditBlog
+  },
+  {
+    path: '/types',
+    name: 'Types',
+    component: Types
+  },
+  {
+    path: '/tags',
+    name: 'Tags',
+    component: Tags
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
   },
   {
-    path: '/blog/add',
-    name: 'BlogAdd',
+    path: '/edit',
+    name: 'BlogEdit',
     component: BlogEdit,
     meta: {
       requireAuth: true
     }
   },
+  // {
+  //   path: '/editblogs',
+  //   name: 'EditBlog',
+  //   component: EditBlog,
+  //   meta: {
+  //     requireAuth: true
+  //   }
+  // },
   {
+    path: '/chatroom',
+    name: 'ChatRoom',
+    component: ChatRoom,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    //参数
     path: '/blog/:blogId',
     name: 'BlogDetail',
     component: BlogDetail

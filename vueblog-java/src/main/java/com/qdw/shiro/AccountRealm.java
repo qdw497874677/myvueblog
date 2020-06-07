@@ -13,13 +13,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AccountRealm extends AuthorizingRealm {
-
+    // 注入两个依赖来完成登录逻辑
     @Autowired
     JwtUtils jwtUtils;
 
     @Autowired
     UserService userService;
 
+    // 确保支持的是JwtToken
     @Override
     public boolean supports(AuthenticationToken token) {
         return token instanceof JwtToken;

@@ -1,20 +1,17 @@
-package site.syso.controller;
-
-import java.io.IOException;
-import java.util.concurrent.CopyOnWriteArraySet;
-
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
+package com.qdw.controller;
 
 import org.springframework.stereotype.Controller;
 
+import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.CopyOnWriteArraySet;
+
 @Controller
 @ServerEndpoint("/ws")
-public class WebSocketServer {
+public class WebSocketController {
 
     private static CopyOnWriteArraySet<Session> sessions = new CopyOnWriteArraySet<>();
 
@@ -29,14 +26,15 @@ public class WebSocketServer {
     @OnClose
     public void onClose(Session session) {
         sessions.remove(session);
-        this.broadcast("[用户" + session.getId() + "]退出聊天室.");
+        this.broadcast(" [用户" + session.getId() + "]退出聊天室.");
         System.out.println("size:" + sessions.size());
     }
 
     @OnMessage
     public void onMessage(String message, Session session) {
         System.out.println(session.getId() + " say " + message);
-        this.broadcast("[用户" + session.getId() + "]说：" + message);
+        this.broadcast(new SimpleDateFormat("HH:mm:ss").format(new Date())+" [用户" + session.getId() + "]说：" + message);
+
     }
 
     @OnError

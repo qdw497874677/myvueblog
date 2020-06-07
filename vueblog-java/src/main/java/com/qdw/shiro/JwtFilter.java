@@ -23,24 +23,26 @@ import java.io.IOException;
 @Component
 public class JwtFilter extends AuthenticatingFilter {
 
+    // 通过这个工具类，处理jwt信息
     @Autowired
     JwtUtils jwtUtils;
 
+    // 创建自定义的token
     @Override
     protected AuthenticationToken createToken(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-
+        // 将header中的jwt内容作为token的一部分
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String jwt = request.getHeader("Authorization");
         if(StringUtils.isEmpty(jwt)) {
             return null;
         }
-
         return new JwtToken(jwt);
     }
 
+    // 拦截
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-
+        // 如果jwt不存在，就直接返回true，不拦截。
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String jwt = request.getHeader("Authorization");
         if(StringUtils.isEmpty(jwt)) {
@@ -58,16 +60,19 @@ public class JwtFilter extends AuthenticatingFilter {
         }
     }
 
+    // 为了满足前后端分离，所以要重写这个方法
     @Override
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {
 
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-
+        // 获取错误
         Throwable throwable = e.getCause() == null ? e : e.getCause();
+        // 将错误作为Result转化为json
         Result result = Result.fail(throwable.getMessage());
         String json = JSONUtil.toJsonStr(result);
 
         try {
+            // 把json返回去
             httpServletResponse.getWriter().print(json);
         } catch (IOException ioException) {
 

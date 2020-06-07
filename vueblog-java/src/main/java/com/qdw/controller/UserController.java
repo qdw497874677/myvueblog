@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  *  前端控制器
  * </p>
  *
- * @author 关注公众号：MarkerHub
+ * @author qdw
  * @since 2020-05-25
  */
 @RestController

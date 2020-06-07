@@ -50,6 +50,7 @@ public class ShiroConfig {
         return securityManager;
     }
 
+    // 设置过滤器
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
@@ -57,10 +58,13 @@ public class ShiroConfig {
         Map<String, String> filterMap = new LinkedHashMap<>();
 
         filterMap.put("/**", "jwt");
+        // shiro默认的过滤器，表示需要登录才能访问。
+//        filterMap.put("/**", "authc");
         chainDefinition.addPathDefinitions(filterMap);
         return chainDefinition;
     }
 
+    // 通过shiroFilterFactory添加shiro过滤器，这里创建jwt过滤器，来实现之前定义的逻辑
     @Bean("shiroFilterFactoryBean")
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager,
                                                          ShiroFilterChainDefinition shiroFilterChainDefinition) {

@@ -2,6 +2,7 @@
   <div>
     <Header></Header>
 
+
     <div class="m-content">
 
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
@@ -52,7 +53,7 @@
             { required: true, message: '请输入摘要', trigger: 'blur' }
           ],
           content: [
-            { trequired: true, message: '请输入内容', trigger: 'blur' }
+            { required: true, message: '请输入内容', trigger: 'blur' }
           ]
         }
       };

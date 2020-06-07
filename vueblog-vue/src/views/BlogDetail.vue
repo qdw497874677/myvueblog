@@ -2,13 +2,36 @@
   <div>
     <Header></Header>
 
-    <div class="mblog">
+    <div class="mblog" >
       <h2> {{ blog.title }}</h2>
-      <el-link icon="el-icon-edit" v-if="ownBlog">
-        <router-link :to="{name: 'BlogEdit', params: {blogId: blog.id}}" >
-        编辑
-        </router-link>
-      </el-link>
+      <div >
+<!--        <el-link icon="el-icon-edit" v-if="ownBlog" >-->
+<!--          <router-link :to="{name: 'BlogEdit', params: {blogId: blog.id}}" style="text-decoration: none;color: #0060B6;">-->
+<!--            编辑-->
+<!--          </router-link>-->
+<!--        </el-link>-->
+        <el-row :gutter="5" >
+          <el-col :span="3" :offset="18">
+            <div class="grid-content bg-purple">
+              <el-button type="primary" v-if="ownBlog" style="width: 100%">编辑</el-button>
+            </div>
+          </el-col>
+          <el-col :span="3" >
+            <div class="grid-content bg-purple">
+              <el-button type="danger" v-if="ownBlog" icon="el-icon-delete" style="width: 100%" v-on:click="deleteBlog">移除</el-button>
+            </div>
+          </el-col>
+        </el-row>
+
+
+<!--        <el-link icon="el-icon-delete" v-if="ownBlog" style="padding: 10px">-->
+<!--&lt;!&ndash;          <router-link :to="{name: 'BlogEdit', params: {blogId: blog.id}}" style="text-decoration: none;color: #0060B6;">&ndash;&gt;-->
+<!--          <router-link :to="{name: 'BlogEdit', params: {blogId: blog.id}}" style="text-decoration: none;color: #0060B6;">-->
+<!--            移除到回收站-->
+<!--          </router-link>-->
+<!--        </el-link>-->
+      </div>
+
       <el-divider></el-divider>
       <div class="markdown-body" v-html="blog.content"></div>
 
@@ -32,6 +55,19 @@
           content: ""
         },
         ownBlog: false
+      }
+    },
+    methods: {
+      deleteBlog:function(){
+        const _this = this;
+        _this.$axios.get('/blog/delete/'+_this.blog.id,{
+            headers: {
+                "Authorization": localStorage.getItem("token")
+            }
+        }).then(res => {
+          _this.$router.push("/")
+            console.log("!!!"+_this.blog.id)
+        })
       }
     },
     created() {

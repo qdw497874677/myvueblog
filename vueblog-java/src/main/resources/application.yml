@@ -8,6 +8,8 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 server:
   port: 8081
 shiro-redis:
@@ -21,3 +23,7 @@ markerhub:
     # token有效时长，7天，单位秒
     expire: 604800
     header: Authorization
+logging:
+  level:
+    # root: info
+    com.qdw.common.mapper.*: debug

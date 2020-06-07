@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * 
  * </p>
  *
- * @author 关注公众号：MarkerHub
+ * @author qdw
  * @since 2020-05-25
  */
 @Data
@@ -33,6 +33,10 @@ public class Blog implements Serializable {
 
     private Long userId;
 
+    private Long typeId;
+
+    private String typeName;
+
     @NotBlank(message = "标题不能为空")
     private String title;
 
@@ -46,6 +50,8 @@ public class Blog implements Serializable {
     private LocalDateTime created;
 
     private Integer status;
+
+    private Boolean published;
 
 
 }

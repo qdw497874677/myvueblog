@@ -3,7 +3,9 @@
 
     <el-container>
       <el-header>
-        <img class="mlogo" src="https://www.markerhub.com/dist/images/logo/markerhub-logo.png" alt="">
+<!--        <img class="mlogo" src="https://www.markerhub.com/dist/images/logo/markerhub-logo.png" alt="">-->
+<!--        <img class="mlogo" src="src/assets/mylogo.png" alt="">-->
+        <img class="mlogo" src="../assets/mylogo.png" alt="">
       </el-header>
       <el-main>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
@@ -32,7 +34,7 @@
     data() {
       return {
         ruleForm: {
-          username: 'markerhub',
+          username: 'qdw',
           password: '111111'
         },
         rules: {
@@ -50,19 +52,19 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            const _this = this
+            const _this = this;
             this.$axios.post('/login', this.ruleForm).then(res => {
 
-              console.log(res.data)
-              const jwt = res.headers['authorization']
-              const userInfo = res.data.data
+              console.log(res.data);
+              const jwt = res.headers['authorization'];
+              const userInfo = res.data.data;
 
               // 把数据共享出去
-              _this.$store.commit("SET_TOKEN", jwt)
-              _this.$store.commit("SET_USERINFO", userInfo)
+              _this.$store.commit("SET_TOKEN", jwt);
+              _this.$store.commit("SET_USERINFO", userInfo);
 
               // 获取
-              console.log(_this.$store.getters.getUser)
+              console.log(_this.$store.getters.getUser);
 
               _this.$router.push("/blogs")
             })
@@ -116,7 +118,7 @@
   }
 
   .mlogo {
-    height: 60%;
+    height: 70%;
     margin-top: 10px;
   }
 
