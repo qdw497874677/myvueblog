@@ -1,6 +1,5 @@
 com\qdw\shiro\JwtToken.class
 com\qdw\service\impl\BlogServiceImpl.class
-com\qdw\controller\admin\BlogController.class
 com\qdw\entity\Blog.class
 com\qdw\util\JwtUtils.class
 com\qdw\CodeGenerator$1.class
@@ -24,10 +23,12 @@ com\qdw\entity\Type.class
 com\qdw\config\WebSocketConfig.class
 com\qdw\controller\WebSocketController.class
 com\qdw\service\BlogTagService.class
+com\qdw\controller\admin\AdminTagController.class
 com\qdw\service\impl\BlogTagServiceImpl.class
 com\qdw\CodeGenerator.class
 com\qdw\controller\BlogTagController.class
 com\qdw\service\impl\TagServiceImpl.class
+com\qdw\controller\admin\AdminBlogController.class
 com\qdw\service\TypeService.class
 com\qdw\mapper\BlogTagMapper.class
 com\qdw\VueblogApplication.class
@@ -41,5 +42,6 @@ com\qdw\config\MybatisPlusConfig.class
 com\qdw\shiro\AccountProfile.class
 com\qdw\mapper\TagMapper.class
 com\qdw\shiro\AccountRealm.class
+com\qdw\controller\admin\AdminTypeController.class
 com\qdw\shiro\JwtFilter.class
 com\qdw\CodeGenerator$2.class

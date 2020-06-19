@@ -1,4 +1,7 @@
+D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\controller\admin\AdminTypeController.java
+D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\controller\admin\AdminBlogController.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\util\ShiroUtil.java
+D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\controller\admin\AdminTagController.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\service\impl\BlogTagServiceImpl.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\service\impl\BlogServiceImpl.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\util\JwtUtils.java
@@ -17,7 +20,6 @@ D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\shiro\AccountRealm.ja
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\config\WebSocketConfig.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\config\ShiroConfig.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\service\BlogTagService.java
-D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\controller\admin\BlogController.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\controller\WebSocketController.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\common\lang\Result.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\shiro\JwtToken.java

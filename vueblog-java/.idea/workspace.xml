@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf49f1dc-c865-463c-832c-31bb4d907841" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/qdw/controller/admin/AdminTagController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/qdw/controller/admin/AdminTypeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2e00b4a0-0bea-49ef-9c59-77d10c3a0c5a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2e00b4a0-0bea-49ef-9c59-77d10c3a0c5a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vueblog-vue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../vueblog-vue/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qdw/entity/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qdw/entity/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-devtools.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/vueblog.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/BlogMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/BlogTagMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/TagMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/TypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/vueblog.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +56,13 @@
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="vueblog: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="m_blog: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="vueblog: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="m_type: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
@@ -53,6 +74,13 @@
       </path>
     </expand>
     <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -160,6 +188,7 @@
       <workItem from="1591517700606" duration="4835000" />
       <workItem from="1591575974843" duration="895000" />
       <workItem from="1591665550648" duration="39000" />
+      <workItem from="1592579079428" duration="3777000" />
     </task>
     <servers />
   </component>
@@ -190,42 +219,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590739783494" />
-    <state width="1493" height="283" key="GridCell.Tab.0.bottom" timestamp="1591545366737">
+    <state width="1493" height="228" key="GridCell.Tab.0.bottom" timestamp="1592583425390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591545366737" />
-    <state width="1493" height="283" key="GridCell.Tab.0.center" timestamp="1591545366737">
+    <state width="1493" height="228" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592583425390" />
+    <state width="1493" height="228" key="GridCell.Tab.0.center" timestamp="1592583425389">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591545366737" />
-    <state width="1493" height="283" key="GridCell.Tab.0.left" timestamp="1591545366737">
+    <state width="1493" height="228" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592583425389" />
+    <state width="1493" height="228" key="GridCell.Tab.0.left" timestamp="1592583425389">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591545366737" />
-    <state width="1493" height="283" key="GridCell.Tab.0.right" timestamp="1591545366737">
+    <state width="1493" height="228" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592583425389" />
+    <state width="1493" height="228" key="GridCell.Tab.0.right" timestamp="1592583425390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591545366737" />
-    <state width="1493" height="283" key="GridCell.Tab.1.bottom" timestamp="1591545366737">
+    <state width="1493" height="228" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592583425390" />
+    <state width="1493" height="228" key="GridCell.Tab.1.bottom" timestamp="1592583425390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591545366737" />
-    <state width="1493" height="283" key="GridCell.Tab.1.center" timestamp="1591545366737">
+    <state width="1493" height="228" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592583425390" />
+    <state width="1493" height="228" key="GridCell.Tab.1.center" timestamp="1592583425390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1591545366737" />
-    <state width="1493" height="283" key="GridCell.Tab.1.left" timestamp="1591545366737">
+    <state width="1493" height="228" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1592583425390" />
+    <state width="1493" height="228" key="GridCell.Tab.1.left" timestamp="1592583425390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1591545366737" />
-    <state width="1493" height="283" key="GridCell.Tab.1.right" timestamp="1591545366737">
+    <state width="1493" height="228" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1592583425390" />
+    <state width="1493" height="228" key="GridCell.Tab.1.right" timestamp="1592583425390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1591545366737" />
-    <state x="478" y="135" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1591021229174">
+    <state width="1493" height="228" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1592583425390" />
+    <state x="478" y="135" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1592581894715">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="135" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1591021229174" />
+    <state x="478" y="135" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1592581894715" />
     <state x="449" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1591665550867">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
