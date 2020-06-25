@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qdw.mapper.BlogMapper">
-
+<!--    <select id="queryBlogsByType" resultType="MysqlData">-->
+<!--        select b.id,b.user_id,b.title,b.description,b.content,b.created,b.status,b.published,t.id typeId,t.name typeName-->
+<!--        from m_blog b left join m_type t-->
+<!--        on b.type_id=t.id ${ew.customSqlSegment} order by b.created desc-->
+<!--    </select>-->
 </mapper>

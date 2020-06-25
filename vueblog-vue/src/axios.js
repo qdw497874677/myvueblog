@@ -2,6 +2,7 @@ import axios from 'axios'
 import Element from 'element-ui'
 import router from './router'
 import store from './store'
+import qs from 'qs'
 
 // 默认请求url前缀
 axios.defaults.baseURL = "http://localhost:8081"

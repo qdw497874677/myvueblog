@@ -35,5 +35,15 @@ public class AdminTypeController {
         typeService.save(type);
         return Result.succ("插入成功");
     }
+    @RequestMapping("/deleteType")
+    public Result deleteType(@RequestParam int id){
+        boolean res = typeService.removeById(id);
+        if (res){
+            return Result.succ("删除成功");
+        }else {
+            return Result.fail("未删除");
+        }
+
+    }
 
 }

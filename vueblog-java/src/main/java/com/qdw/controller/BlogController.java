@@ -2,21 +2,29 @@ package com.qdw.controller;
 
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qdw.common.dto.BlogSearch;
 import com.qdw.common.lang.Result;
 import com.qdw.entity.Blog;
 import com.qdw.entity.Type;
+import com.qdw.mapper.BlogMapper;
 import com.qdw.service.BlogService;
 import com.qdw.util.ShiroUtil;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * <p>
@@ -29,6 +37,9 @@ import java.time.LocalDateTime;
 @RestController
 public class BlogController {
 
+    Logger logger = LoggerFactory.getLogger(BlogController.class);
+    @Autowired
+    BlogMapper blogMapper;
     @Autowired
     BlogService blogService;
 
@@ -37,7 +48,21 @@ public class BlogController {
 
 //        Page page = new Page(currentPage, 5);
 //        IPage pageData = blogService.page(page, new QueryWrapper<Blog>().orderByDesc("created"));
-        Page<Blog> pageData = blogService.queryPageBlogPublished(currentPage,5);
+        IPage pageData = blogService.queryPageBlogPublished(currentPage,5);
+
+        return Result.succ(pageData);
+    }
+
+    @GetMapping("/blogsType")
+    public Result list(@RequestParam("typeId") Long typeId,@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage){
+        Map<String,Object> map = new HashMap<>();
+        System.out.println("id:"+typeId);
+        map.put("b.published",1);
+        if (typeId != null){
+            map.put("t.id",typeId);
+        }
+
+        IPage pageData = blogService.queryBlogsByType(currentPage,5,new QueryWrapper<Blog>().allEq(map));
         return Result.succ(pageData);
     }
 
@@ -45,10 +70,16 @@ public class BlogController {
     public Result detail(@PathVariable(name = "id") Long id) {
         Blog blog = blogService.getById(id);
         Assert.notNull(blog, "该博客已被删除");
-
+        int i = addViews(id, 1);
+        logger.debug("增加浏览量{}",i);
         return Result.succ(blog);
     }
 
+    public int addViews(long id,int incr){
+//        Blog blog = blogService.getById(id);
+//        blogService.updateById(blog.setViews(blog.getViews()+incr));
+        return blogService.updateView(id,incr);
+    }
 
 
     @RequiresAuthentication

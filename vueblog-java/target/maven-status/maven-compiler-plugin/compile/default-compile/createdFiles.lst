@@ -28,6 +28,7 @@ com\qdw\service\impl\BlogTagServiceImpl.class
 com\qdw\CodeGenerator.class
 com\qdw\controller\BlogTagController.class
 com\qdw\service\impl\TagServiceImpl.class
+com\qdw\config\RedisConfig.class
 com\qdw\controller\admin\AdminBlogController.class
 com\qdw\service\TypeService.class
 com\qdw\mapper\BlogTagMapper.class

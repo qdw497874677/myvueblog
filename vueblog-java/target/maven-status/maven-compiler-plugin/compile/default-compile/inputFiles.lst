@@ -8,6 +8,7 @@ D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\util\JwtUtils.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\controller\TagController.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\common\dto\LoginDto.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\CodeGenerator.java
+D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\config\RedisConfig.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\service\TagService.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\service\TypeService.java
 D:\java工作空间\vueblog\vueblog-java\src\main\java\com\qdw\mapper\UserMapper.java

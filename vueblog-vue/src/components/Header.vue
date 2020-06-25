@@ -5,16 +5,10 @@
       <h3>欢迎</h3>
     </div>
 
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" router>
-      <el-menu-item index="blogs">主页</el-menu-item>
-<!--      <el-menu-item index="2" v-on:click="types" >分类</el-menu-item>-->
-      <el-menu-item index="types" >分类</el-menu-item>
-      <el-menu-item index="tags" >标签</el-menu-item>
-      <el-menu-item index="edit" >发布</el-menu-item>
-      <el-menu-item index="chatroom" >聊天室</el-menu-item>
-<!--      <el-menu-item index="editblogs" v-show="hasLogin">管理博客</el-menu-item>-->
-      <el-menu-item index="editblogs" >管理博客</el-menu-item>
-<!--      <el-menu-item index="4" v-on:click="edit">发布</el-menu-item>-->
+    <el-menu :default-active="$router.path" class="el-menu-demo" mode="horizontal" @select="handleSelect" router>
+      <el-menu-item v-for="(item,i) in navList" :key="i" :index="item.name">
+        {{ item.navItem }}
+      </el-menu-item>
 
       <div class="block" style="float: right">
         <div style="float: left; padding: 10px">
@@ -27,22 +21,6 @@
       </div>
     </el-menu>
 
-<!--    <div class="block" >-->
-<!--      <el-avatar :size="50" :src="user.avatar"></el-avatar>-->
-<!--      <div>{{ user.username }}</div>-->
-<!--    </div>-->
-
-<!--    <div class="maction">-->
-<!--      <span><el-link href="/blogs">主页</el-link></span>-->
-<!--      <el-divider direction="vertical"></el-divider>-->
-<!--      <span><el-link type="success" href="/blog/add">发表博客</el-link></span>-->
-
-<!--      <el-divider direction="vertical"></el-divider>-->
-<!--      <span v-show="!hasLogin"><el-link type="primary" href="/login">登录</el-link></span>-->
-
-<!--      <span v-show="hasLogin"><el-link type="danger" @click="logout">退出</el-link></span>-->
-<!--    </div>-->
-
     <br>
   </div>
 </template>
@@ -52,6 +30,13 @@
     name: "Header",
     data() {
       return {
+        navList:[
+          {name:'/blogs',navItem:'博客列表'},
+          {name:'/types',navItem:'分类列表'},
+          {name:'/tags',navItem:'标签列表'},
+          {name:'/edit',navItem:'发布'},
+          {name:'/chatroom',navItem:'聊天室'},
+        ],
         // activeIndex: '1',
         // activeIndex2: '2',
         // activeIndex3: '3',

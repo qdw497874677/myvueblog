@@ -1,6 +1,7 @@
 package com.qdw.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -35,6 +36,7 @@ public class Blog implements Serializable {
 
     private Long typeId;
 
+    @TableField(exist = false)
     private String typeName;
 
     @NotBlank(message = "标题不能为空")
@@ -52,6 +54,8 @@ public class Blog implements Serializable {
     private Integer status;
 
     private Boolean published;
+
+    private Long views;
 
 
 }
