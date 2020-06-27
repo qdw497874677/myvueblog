@@ -13,6 +13,8 @@
               </router-link>
             </h4>
             <p>{{blog.description}}</p>
+            <p>分类：<el-tag>{{blog.type.name}}</el-tag></p>
+            <p>浏览：{{blog.views}}</p>
           </el-card>
         </el-timeline-item>
 
@@ -40,7 +42,7 @@
     components: {Header},
     data() {
       return {
-        blogs: {},
+        blogs: [],
         currentPage: 1,
         total: 0,
         pageSize: 5

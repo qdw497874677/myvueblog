@@ -13,22 +13,25 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.qdw.entity
 server:
   port: 8081
 shiro-redis:
   enabled: true
   redis-manager:
-    host: 49.233.90.47:6379
+#    host: 49.233.90.47:6379
+    host: localhost:6379
 markerhub:
   jwt:
-    # ������Կ
+    # 加密秘钥
     secret: f4e2e52034348f86b67cde581c0f9eb5
-    # token��Чʱ����7�죬��λ��
+    # token有效时长，7天，单位秒
     expire: 604800
     header: Authorization
 logging:
   level:
     # root: info
-    com.qdw.common.mapper.*: debug
-
-
+#    com.qdw.common.mapper.*: debug
+    com.qdw.service.*: debug
+    com.qdw.common.scheduling.*: debug
+    com.qdw.controller.*: debug

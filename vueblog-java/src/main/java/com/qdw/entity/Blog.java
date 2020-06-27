@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.apache.ibatis.type.Alias;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -24,6 +25,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@Alias("Blog")
 @TableName("m_blog")
 public class Blog implements Serializable {
 
@@ -37,7 +39,7 @@ public class Blog implements Serializable {
     private Long typeId;
 
     @TableField(exist = false)
-    private String typeName;
+    private Type type;
 
     @NotBlank(message = "标题不能为空")
     private String title;

@@ -13,7 +13,7 @@
         <el-row :gutter="5" >
           <el-col :span="3" :offset="18">
             <div class="grid-content bg-purple">
-              <el-button type="primary" v-if="ownBlog" style="width: 100%">编辑</el-button>
+              <el-button type="primary" v-if="ownBlog" style="width: 100%" v-on:click="goEdit">编辑</el-button>
             </div>
           </el-col>
           <el-col :span="3" >
@@ -58,6 +58,10 @@
       }
     },
     methods: {
+      goEdit(){
+          const _this = this;
+          _this.$router.push({name:"BlogEdit",params: { blogId: _this.blog.id }});
+      },
       deleteBlog:function(){
         const _this = this;
         _this.$axios.get('/blog/delete/'+_this.blog.id,{

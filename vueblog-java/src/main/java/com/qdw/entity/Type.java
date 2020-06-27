@@ -10,6 +10,7 @@ import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.apache.ibatis.type.Alias;
 
 import javax.validation.constraints.NotBlank;
 
@@ -24,6 +25,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@Alias("Type")
 @TableName("m_type")
 public class Type implements Serializable {
 

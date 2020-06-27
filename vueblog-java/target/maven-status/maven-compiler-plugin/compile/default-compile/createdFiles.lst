@@ -15,14 +15,18 @@ com\qdw\entity\Tag.class
 com\qdw\mapper\TypeMapper.class
 com\qdw\mapper\UserMapper.class
 com\qdw\common\dto\LoginDto.class
+com\qdw\common\scheduling\Scheduling.class
 com\qdw\service\impl\UserServiceImpl.class
 com\qdw\config\ShiroConfig.class
 com\qdw\entity\User.class
 com\qdw\entity\BlogTag.class
 com\qdw\entity\Type.class
+com\qdw\config\ScheduledConfig.class
 com\qdw\config\WebSocketConfig.class
+com\qdw\common\scheduling\ContextStartup.class
 com\qdw\controller\WebSocketController.class
 com\qdw\service\BlogTagService.class
+com\qdw\util\RedisUtil.class
 com\qdw\controller\admin\AdminTagController.class
 com\qdw\service\impl\BlogTagServiceImpl.class
 com\qdw\CodeGenerator.class
@@ -37,6 +41,7 @@ com\qdw\config\CorsConfig.class
 com\qdw\controller\AccountController.class
 com\qdw\controller\TypeController.class
 com\qdw\service\UserService.class
+com\qdw\common\dto\BlogSearch.class
 com\qdw\common\exception\GlobalExceptionHandler.class
 com\qdw\controller\UserController.class
 com\qdw\config\MybatisPlusConfig.class

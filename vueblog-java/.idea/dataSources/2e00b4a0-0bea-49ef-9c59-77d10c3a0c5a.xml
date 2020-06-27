@@ -1228,7 +1228,6 @@
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
     <column id="311" parent="297" name="status">
       <Position>7</Position>

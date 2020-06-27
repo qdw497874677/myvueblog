@@ -20,16 +20,21 @@ import java.util.List;
 public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements BlogService {
 
     @Override
-    public IPage<Blog> queryPageBlogPublished(int currentPage,int pageSize) {
+    public IPage<Blog> queryBlogs(int currentPage,int pageSize,Wrapper wrapper) {
         IPage<Blog> page = new Page<>(currentPage,pageSize);
-        return page.setRecords(baseMapper.queryBlogsPublished(page));
+        return page.setRecords(baseMapper.queryBlogs(page,wrapper));
     }
 
 
     @Override
-    public IPage<Blog> queryBlogsByType(int currentPage, int pageSize, Wrapper wrapper){
+    public IPage<Blog> queryBlogsJoinType(int currentPage, int pageSize, Wrapper wrapper){
         IPage<Blog> page = new Page<>(currentPage,pageSize);
         return page.setRecords(baseMapper.queryBlogsJoinType(page,wrapper));
+    }
+
+    @Override
+    public Blog queryBlogOne(long id) {
+        return baseMapper.queryBlogOne(id);
     }
 
     @Override

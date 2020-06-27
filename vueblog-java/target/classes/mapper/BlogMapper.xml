@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qdw.mapper.BlogMapper">
-<!--    <select id="queryBlogsByType" resultType="MysqlData">-->
-<!--        select b.id,b.user_id,b.title,b.description,b.content,b.created,b.status,b.published,t.id typeId,t.name typeName-->
-<!--        from m_blog b left join m_type t-->
-<!--        on b.type_id=t.id ${ew.customSqlSegment} order by b.created desc-->
-<!--    </select>-->
+
+    <select id="queryBlogs" resultType="Blog">
+            select id,user_id,title,description,content,created,status,published,views
+            from m_blog ${ew.customSqlSegment}
+    </select>
+
+
+    <resultMap id="blogs_type" type="Blog">
+        <result column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="content" property="content"/>
+        <result column="created" property="created"/>
+        <result column="status" property="status"/>
+        <result column="published" property="published"/>
+        <result column="views" property="views"/>
+        <association property="type" javaType="Type">
+            <result column="typeId" property="id"/>
+            <result column="typeName" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="queryBlogsJoinType" resultMap="blogs_type">
+        select b.id,b.user_id,b.title,b.description,b.content,b.created,b.status,b.published,b.views,t.id typeId,t.name typeName
+        from m_blog b left join m_type t
+        on b.type_id=t.id ${ew.customSqlSegment}
+    </select>
+
+    <select id="queryBlogOne" resultMap="blogs_type">
+        select b.id,b.user_id,b.title,b.description,b.content,b.created,b.status,b.published,b.views,t.id typeId,t.name typeName
+        from m_blog b left join m_type t
+        on b.type_id=t.id where b.id=#{id}
+    </select>
+
+
 </mapper>

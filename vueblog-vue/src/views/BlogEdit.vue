@@ -13,6 +13,16 @@
         <el-form-item label="摘要" prop="description">
           <el-input type="textarea" v-model="ruleForm.description"></el-input>
         </el-form-item>
+        <el-form-item label="摘要" prop="description">
+          <el-select v-model="value" placeholder="请选择" style="">
+            <el-option
+                    v-for="(item,index) in types"
+                    :key="index"
+                    :label="item.name"
+                    :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
 
         <el-form-item label="内容" prop="content">
           <mavon-editor v-model="ruleForm.content"></mavon-editor>
@@ -38,11 +48,14 @@
     components: {Header},
     data() {
       return {
+        types: [],
+        value: "",
         ruleForm: {
           id: '',
           title: '',
           description: '',
-          content: ''
+          content: '',
+          typeId: this.value
         },
         rules: {
           title: [
@@ -63,13 +76,17 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
 
-            const _this = this
+            const _this = this;
+
+            _this.ruleForm.typeId = _this.value;
+            console.log("typeId:"+_this.ruleForm.typeId+" value:"+_this.value);
             this.$axios.post('/blog/edit', this.ruleForm, {
               headers: {
                 "Authorization": localStorage.getItem("token")
               }
             }).then(res => {
               console.log(res)
+
               _this.$alert('操作成功', '提示', {
                 confirmButtonText: '确定',
                 callback: action => {
@@ -100,6 +117,14 @@
           _this.ruleForm.title = blog.title
           _this.ruleForm.description = blog.description
           _this.ruleForm.content = blog.content
+          _this.value = blog.type.id
+        });
+        _this.$axios.get("/types").then(res => {
+          console.log(res);
+          _this.types = res.data.data.records;
+          _this.types.push({id:0,name:"无"})
+          // _this.value = _this.types[0].id;
+          console.log("value1:"+_this.value);
         })
       }
 

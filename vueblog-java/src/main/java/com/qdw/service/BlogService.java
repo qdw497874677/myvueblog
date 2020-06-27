@@ -19,7 +19,9 @@ import java.util.List;
  * @since 2020-05-25
  */
 public interface BlogService extends IService<Blog> {
-    IPage<Blog> queryPageBlogPublished(int currentPage, int pageSize);
-    IPage<Blog> queryBlogsByType(int currentPage, int pageSize, Wrapper wrapper);
+    IPage<Blog> queryBlogs(int currentPage, int pageSize,Wrapper wrapper);
+    IPage<Blog> queryBlogsJoinType(int currentPage, int pageSize, Wrapper wrapper);
+    Blog queryBlogOne(long id);
     int updateView(long id,int incr);
+
 }

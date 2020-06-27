@@ -613,4 +613,8 @@ public class RedisUtil {
         return redisTemplate.opsForZSet().reverseRangeWithScores(key, start, end);
     }
 
+    public Set queryKeys(String pattern){
+        return redisTemplate.keys(pattern);
+    }
+
 }
