@@ -6,8 +6,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qdw.common.lang.Result;
+import com.qdw.common.work.Work;
+import com.qdw.common.work.WorkTypeEnum;
 import com.qdw.entity.Blog;
 import com.qdw.service.BlogService;
+import com.qdw.service.RedisService;
 import com.qdw.util.ShiroUtil;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -31,6 +36,8 @@ public class AdminBlogController {
 
     @Autowired
     BlogService blogService;
+    @Autowired
+    RedisService redisService;
 
     @RequiresAuthentication
     @GetMapping("/blogs")
@@ -59,7 +66,7 @@ public class AdminBlogController {
 
     @RequiresAuthentication
     @PostMapping("/blog/edit")
-    public Result edit(@Validated @RequestBody Blog blog) {
+    public Result edit(@Validated @RequestBody Blog blog,@RequestBody Long delayTime) {
 
         Blog temp = null;
 
@@ -79,8 +86,22 @@ public class AdminBlogController {
         }
 
         BeanUtil.copyProperties(blog, temp, "id", "userId", "created", "status");
+        // 处理延时发布
+        if (delayTime!=null){
+            temp.setPublished(false);
+            pushDelayWork(temp.getId(),delayTime);
+        }
         blogService.saveOrUpdate(temp);
+
         return Result.succ(null);
+    }
+
+    private boolean pushDelayWork(long id, long time){
+        Map<String,Object> map = new HashMap<>(2);
+        map.put("id",id);
+        map.put("time",time);
+        Work work = new Work(WorkTypeEnum.CHANGE_BLOG_STATUS,map);
+        return redisService.pushWork(work);
     }
 
     @RequiresAuthentication

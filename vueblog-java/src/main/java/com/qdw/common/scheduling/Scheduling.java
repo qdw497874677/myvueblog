@@ -4,8 +4,11 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.qdw.common.work.MainHander;
+import com.qdw.common.work.Work;
 import com.qdw.entity.Blog;
 import com.qdw.service.BlogService;
+import com.qdw.service.RedisService;
 import com.qdw.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,17 +40,26 @@ public class Scheduling {
     RedisUtil redisUtil;
     @Autowired
     BlogService blogService;
+    @Autowired
+    RedisService redisService;
+    @Autowired
+    MainHander mainHander;
 
-    public void initRedis(){
+    public void initRedisBlogs(){
         List<Blog> blogs = blogService.list();
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         for (Blog blog : blogs) {
             executorService.execute(new Thread(()->{
-                redisUtil.set("views-id:" + blog.getId(),blog.getViews());
+                redisService.addBlog(blog);
             }));
         }
         executorService.shutdown();
-        logger.debug("c初始任务（{}）完成","从MySQL更新Redis");
+        logger.debug("初始任务（{}）完成","从MySQL更新BlogInfo到Redis");
+    }
+    public void initRedisTop(){
+        List<Blog> blogs = blogService.list();
+        redisService.addTopBlogs(blogs);
+        logger.debug("初始任务（{}）完成","从MySQL更新BlogTop到Redis");
     }
 
     @Scheduled(fixedRate = 1000*60)
@@ -109,6 +121,21 @@ public class Scheduling {
         logger.debug("设置Rank，更新bloginfo");
     }
 
+
+    public void getWorks(){
+        while (true){
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            List<Work> list = redisService.popDelayWork();
+            for (Work work : list) {
+                mainHander.hander(work);
+            }
+        }
+
+    }
 
 
 }

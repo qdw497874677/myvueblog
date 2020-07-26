@@ -7,7 +7,8 @@ spring:
     password: 123321
     type: com.alibaba.druid.pool.DruidDataSource
   redis:
-    host: localhost
+#    host: localhost
+    host: 49.233.90.47
     port: 6379
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
@@ -19,8 +20,8 @@ server:
 shiro-redis:
   enabled: true
   redis-manager:
-#    host: 49.233.90.47:6379
-    host: localhost:6379
+    host: 49.233.90.47:6379
+#    host: localhost:6379
 markerhub:
   jwt:
     # 加密秘钥

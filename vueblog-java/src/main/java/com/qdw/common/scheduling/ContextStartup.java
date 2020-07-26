@@ -19,9 +19,10 @@ public class ContextStartup implements ApplicationRunner {
     Scheduling scheduling;
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        scheduling.initRedis();
+        scheduling.initRedisBlogs();
+        scheduling.initRedisTop();
         scheduling.initRedisBlogsInfo();
         scheduling.initRedisRank();
-
+        scheduling.getWorks();
     }
 }

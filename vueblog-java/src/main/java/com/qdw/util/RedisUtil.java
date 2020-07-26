@@ -130,6 +130,20 @@ public class RedisUtil {
         }
     }
 
+    // 批量
+    public boolean batchSet(Map<String,Object> map,long time){
+        try {
+            map.keySet().forEach((a)->{
+                this.set(a,map.get(a),time);
+            });
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     /**
      * 递增
      *
@@ -615,6 +629,10 @@ public class RedisUtil {
 
     public Set queryKeys(String pattern){
         return redisTemplate.keys(pattern);
+    }
+
+    public void zRem(String key,String value){
+        redisTemplate.opsForZSet().remove(key,value);
     }
 
 }
