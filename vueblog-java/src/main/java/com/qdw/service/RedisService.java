@@ -10,8 +10,6 @@ import java.util.List;
 public interface RedisService {
 
     boolean addBlog(Blog blog);
-    // 传空标记，表示数据库也没有
-    boolean addNullBlog(long id);
     Pair<Boolean,List<Blog>> addBlogs(List<Blog> blogs);
     Blog getBlog(Long id);
     List<Blog> getBlogs(List<Long> ids);

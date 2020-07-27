@@ -101,7 +101,7 @@ public class AdminBlogController {
         map.put("id",id);
         map.put("time",time);
         Work work = new Work(WorkTypeEnum.CHANGE_BLOG_STATUS,map);
-        return redisService.pushWork(work);
+        return redisService.pushDelayWork(work);
     }
 
     @RequiresAuthentication

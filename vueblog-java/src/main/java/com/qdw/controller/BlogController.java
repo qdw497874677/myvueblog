@@ -13,6 +13,7 @@ import com.qdw.entity.Blog;
 import com.qdw.entity.Type;
 import com.qdw.mapper.BlogMapper;
 import com.qdw.service.BlogService;
+import com.qdw.service.RedisService;
 import com.qdw.util.RedisUtil;
 import com.qdw.util.ShiroUtil;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -46,6 +47,8 @@ public class BlogController {
     BlogMapper blogMapper;
     @Autowired
     BlogService blogService;
+    @Autowired
+    RedisService redisService;
 
     @GetMapping("/blogs")
     public Result list(@RequestParam(defaultValue = "1") Integer currentPage) {
@@ -87,18 +90,24 @@ public class BlogController {
     @GetMapping("/blog/{id}")
     public Result detail(@PathVariable(name = "id") Long id) {
 //        Blog blog = blogService.getById(id);
-        Blog blog = blogService.queryBlogOne(id);
+        // 改成从redis中拿
+        Blog blog = redisService.getBlog(id);
+//        Blog blog = blogService.queryBlogOne(id);
         Assert.notNull(blog, "该博客已被删除");
-        long i = addViews(id, 1);
+//        long i = addViews(id, 1);
+        addViews(id);
         return Result.succ(blog);
     }
 
-    public long addViews(long id,int incr){
-        long res = redisUtil.incr("views-id:" + id, incr);
-        redisUtil.expire("views-id:" + id,1000);
-        logger.debug("在Redis中增加{}",res);
-//        blogService.updateView(id,incr);
-        return res;
+//    public long addViews(long id,int incr){
+//        long res = redisUtil.incr("views-id:" + id, incr);
+//        redisUtil.expire("views-id:" + id,1000);
+//        logger.debug("在Redis中增加{}",res);
+////        blogService.updateView(id,incr);
+//        return res;
+//    }
+    public void addViews(long id){
+        redisService.incrView(id);
     }
 
 

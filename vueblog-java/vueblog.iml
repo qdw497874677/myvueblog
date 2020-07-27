@@ -125,7 +125,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.sun:tools:1.8.0">
         <CLASSES>
-          <root url="jar://C:/Program Files/Java/jdk1.8.0_161/lib/tools.jar!/" />
+          <root url="jar:///opt/jdk/jdk1.8.0_251/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -157,5 +157,6 @@
     <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.48.Final" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.3.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: repository.com.google.code.gson:gson:2.8.5" level="project" />
   </component>
 </module>

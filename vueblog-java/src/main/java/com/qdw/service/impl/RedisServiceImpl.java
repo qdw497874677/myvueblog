@@ -1,6 +1,9 @@
 package com.qdw.service.impl;
 
-
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.qdw.common.work.MainHander;
 import com.qdw.common.work.Work;
 import com.qdw.common.work.WorkTypeEnum;
@@ -50,13 +53,11 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public boolean addBlog(Blog blog) {
-        return redisUtil.set(BLOG_INFO_ID + blog.getId(), blog, BLOG_TIME);
+        return redisUtil.set(BLOG_INFO_ID + blog.getId(), new Gson().toJson(blog), BLOG_TIME);
     }
 
-    @Override
-    public boolean addNullBlog(long id) {
-        return redisUtil.set(BLOG_INFO_ID+id,"null",BLOG_NULL_TIME);
-    }
+
+
 
 
     @Override
@@ -80,10 +81,21 @@ public class RedisServiceImpl implements RedisService {
         if ("null".equals(o)){
             return null;
         }
-        Blog blog = (Blog)o;
         // 如果没有对应的缓存，就去数据库中查
-        blog = blog!=null?blog:blogService.getById(id);
+        Blog blog = null;
+        System.out.println("o:"+o);
+        if (o!=null){
+
+            blog = new Gson().fromJson(o.toString(), Blog.class);
+        }else {
+            blog = blogService.getById(id);
+        }
+        addNull(BLOG_INFO_ID+id);
         return blog;
+    }
+
+    public boolean addNull(String key) {
+        return redisUtil.set(key,"null",BLOG_NULL_TIME);
     }
 
     @Override
@@ -126,12 +138,15 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public void incrView(long blogId) {
+        // 如果不存在　看看数据库有吗　如果没有　就不操作，如果有就添加这个缓存
         redisUtil.zIncrementScore(BLOG_TOP,BLOG_TOP_ID+blogId,1);
     }
 
     @Override
     public boolean pushDelayWork(Work work) {
+        // 把延时任务放到zset中，score为任务将执行的时间
         redisUtil.zSet(DELAY_WORK,work.getId(),(Long)work.getResources().get("time"));
+        // 把任务具体内容放到set中
         redisUtil.set(DELAY_WORK_INFO+work.getId(),work);
         return false;
     }
